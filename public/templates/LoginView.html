@@ -1,0 +1,22 @@
+<div id="login-template" class="container">
+	<div class="hero-unit span6" id="login-form-container">
+		<img class="displayed" src="/assets/img/logo.png" alt="logo"/>
+		<form id="login-form" class="form">
+			<fieldset>
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" id="email" name="email" placeholder="Email" value="<%= email === null ? '' : email %>">
+						<span class="help-block"></span>
+					</div>
+                </div>
+                <div class="control-group">
+					<div class="controls">
+						<input class="input-medium" type="password" id="user_password" placeholder="Password" name="user_password" value="">
+						<a href="#" class="btn btn-primary loginBtn">Login</a>
+						<span class="help-block"></span>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
