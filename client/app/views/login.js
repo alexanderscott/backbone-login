@@ -1,4 +1,12 @@
-window.LoginView = Backbone.View.extend({
+/**
+ * @author      Alex Ehrnschwender
+ * @desc		stores the POST state and response state of authentication for user
+ */
+
+require('utils');
+
+
+LoginView = Backbone.View.extend({
     
     initialize: function(options) {
       	this.render(); 	

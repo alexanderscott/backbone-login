@@ -1,4 +1,9 @@
-window.HeaderView = Backbone.View.extend({
+/**
+ * @author      Alex Ehrnschwender <alex@tastemakerx.com>
+ * @desc        
+ */
+
+var HeaderView = Backbone.View.extend({
 
     initialize: function () {
         this.model.on("change:authToken", this.render, this); 
@@ -12,7 +17,7 @@ window.HeaderView = Backbone.View.extend({
     
     // Show user dropdown menu when show var is true, hide when false
     toggleMenu: function(show) {
-    	this.$el.find("#userMenu").toggle(show);
+        this.$el.find("#userMenu").toggle(show);
     },
     
     events: {
@@ -29,3 +34,5 @@ window.HeaderView = Backbone.View.extend({
     }
     
 });
+
+return HeaderView;
