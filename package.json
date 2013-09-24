@@ -1,0 +1,21 @@
+{
+  "name": "backbone-login",
+  "author": "alexanderscott",
+  "keywords": "backbone, backbonejs, authentication",
+  "description": "Authentication best practices & demo using a Backbone.js Session Model",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "sqlite3": "~2.1.17",
+    "bcrypt": "~0.7.7",
+    "underscore": "~1.5.2",
+    "hbs": "~2.4.0",
+    "express": "~3.4.0"
+  },
+  "engines": {
+    "node": "0.10.*",
+    "npm": "1.1.*"
+  }
+}

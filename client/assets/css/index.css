@@ -1,4 +1,0 @@
-/* important to have personal stylesheet last for override */
-@import "/assets/libs/vendor/bootstrap/css/bootstrap.css";
-@import "/assets/libs/vendor/bootstrap/css/bootstrap-datepicker.css";
-@import "style.css";

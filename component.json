@@ -1,7 +1,0 @@
-{
-  "Backbone.localStorage": "components/Backbone.localStorage",
-  "backbone": "components/backbone",
-  "jquery": "components/jquery/jquery.js",
-  "require": "components/require",
-  "underscore": "components/underscore"
-}
