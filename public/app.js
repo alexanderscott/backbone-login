@@ -6,7 +6,6 @@ define([
     "underscore",
     "backbone",
     "utils"
-    //"jquery-cookie"
 ],
 function($, _, Backbone) {
 
@@ -27,14 +26,11 @@ function($, _, Backbone) {
         }
     };
 
-    //$.cookie.json = true;                   // Turns on automatic storage of JSON objects as cookie values 
-
-    $.ajaxSetup({ cache: false });          // force ajax call on all browsers (looking at you, IE)
+    $.ajaxSetup({ cache: false });          // force ajax call on all browsers
 
 
     // Global event aggregator
     app.eventAggregator = _.extend({}, Backbone.Events);
-
 
     return app;
 

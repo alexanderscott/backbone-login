@@ -9,6 +9,13 @@ define([
 
     var SessionModel = Backbone.Model.extend({
 
+        // Initialize with negative/empty defaults
+        // These will be overriden after the initial checkAuth
+        defaults: {
+            logged_in: false,
+            user_id: ''
+        },
+
         initialize: function(){
             _.bindAll(this);
 
@@ -17,12 +24,6 @@ define([
             this.user = new UserModel({ });
         },
 
-        // Initialize with negative/empty defaults
-        // These will be overriden after the initial checkAuth
-        defaults: {
-            logged_in: false,
-            user_id: ''
-        },
 
         url: function(){
             return app.API + '/auth';
@@ -30,7 +31,7 @@ define([
 
         // Fxn to update user attributes after recieving API response
         updateSessionUser: function( userData ){
-            this.user.set( _.pick( userData, ['id', 'username', 'name', 'email'] ) );
+            this.user.set( _.pick( userData, _.keys(this.user.defaults) ) );
         },
 
 
@@ -57,7 +58,7 @@ define([
                     if('error' in callback) callback.error(mod, res);    
                 }
             }).complete( function(){
-                if('complete' in callback) callback.complete();    
+                if('complete' in callback) callback.complete();
             });
         },
 

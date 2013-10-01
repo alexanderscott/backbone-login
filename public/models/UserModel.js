@@ -4,7 +4,6 @@
 define([
     "app",
     "utils"
-    //"jquery-cookie"
 ], function(app){
 
     var UserModel = Backbone.Model.extend({
@@ -17,7 +16,8 @@ define([
         defaults: {
             id: 0,
             username: '',
-            name: ''
+            name: '',
+            email: ''
         },
 
         url: function(){

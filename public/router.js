@@ -25,14 +25,14 @@ define([
             //"login"         : "login"
         },
 
-        showView: function(view, options){
+        show: function(view, options){
 
             // Every page view in the router should need a header.
             // Instead of creating a base parent view, just assign the view to this
             // so we can create it if it doesn't yet exist
             if(!this.headerView){
                 this.headerView = new HeaderView({});
-                $(".header").html( this.headerView.render().$el );
+                this.headerView.setElement( $(".header") ).render();
             }
 
             // Close and unbind any existing page view
@@ -68,9 +68,9 @@ define([
             var hasPushState = !!(window.history && history.pushState);
             if(!hasPushState) this.navigate(window.location.pathname.substring(1), {trigger: true, replace: true});
             else {
-                this.showView( new LoginPageView({}) );
-                //if(app.session.get('logged_in')) this.showView( new LoginPageView({}) );
-                //else this.showView( new LoggedInPageView({}) );
+                this.show( new LoginPageView({}) );
+                //if(app.session.get('logged_in')) this.show( new LoginPageView({}) );
+                //else this.show( new LoggedInPageView({}) );
             }                
 
         }
