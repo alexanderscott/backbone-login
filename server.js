@@ -74,7 +74,6 @@ app.get("/", function(req, res){
 // GET /api/auth
 // @desc: checks a user's auth status based on cookie
 app.get("/api/auth", function(req, res){
-    console.log(req.signedCookies);
     db.get("SELECT * FROM users WHERE id = ? AND auth_token = ?", [ req.signedCookies.user_id, req.signedCookies.auth_token ], function(err, user){
         if(user){
             res.json({ user: _.omit(user, ['password', 'auth_token']) });   
