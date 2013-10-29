@@ -10,12 +10,13 @@
 var express = require('express'),
     http = require('http'),
 
-    app = express(),
-    server = http.createServer(app).listen( process.env.PORT || 3000),
-
+    config = require("./config"),
     bcrypt = require("bcrypt"),
     sqlite = require("sqlite3"),
-    _ = require("underscore");
+    _ = require("underscore"),
+
+    app = express(),
+    server = http.createServer(app).listen( process.env.PORT || config.port);
 
 
 
@@ -50,8 +51,8 @@ app.use( express.bodyParser() );            // Needed to parse POST data sent as
 
 
 // Cookie config
-app.use( express.cookieParser( 'bb-login-secret' ) );           // populates req.signedCookies
-app.use( express.cookieSession( 'bb-login-secret' ) );          // populates req.session, needed for CSRF
+app.use( express.cookieParser( config.cookieSecret ) );           // populates req.signedCookies
+app.use( express.cookieSession( config.sessionSecret ) );         // populates req.session, needed for CSRF
 
 // We need serverside view templating to initially set the CSRF token in the <head> metadata
 // Otherwise, the html could just be served statically from the public directory
@@ -91,8 +92,8 @@ app.post("/api/auth/login", function(req, res){
 
             // Compare the POSTed password with the encrypted db password
             if( bcrypt.compareSync( req.body.password, user.password)){
-                res.cookie('user_id', user.id, { signed: true, maxAge: (1000 * 60 * 60 * 24 * 365)  });
-                res.cookie('auth_token', user.auth_token, { signed: true, maxAge: (1000 * 60 * 60 * 24 * 365)  });
+                res.cookie('user_id', user.id, { signed: true, maxAge: config.cookieMaxAge  });
+                res.cookie('auth_token', user.auth_token, { signed: true, maxAge: config.cookieMaxAge  });
 
                 // Correct credentials, return the user object
                 res.json({ user: _.omit(user, ['password', 'auth_token']) });   
@@ -126,8 +127,8 @@ app.post("/api/auth/signup", function(req, res){
                     } else {
 
                         // Set the user cookies and return the cleansed user data
-                        res.cookie('user_id', user.id, { signed: true, maxAge: (1000 * 60 * 60 * 24 * 365)  });
-                        res.cookie('auth_token', user.auth_token, { signed: true, maxAge: (1000 * 60 * 60 * 24 * 365)  });
+                        res.cookie('user_id', user.id, { signed: true, maxAge: config.cookieMaxAge  });
+                        res.cookie('auth_token', user.auth_token, { signed: true, maxAge: config.cookieMaxAge  });
                         res.json({ user: _.omit(user, ['password', 'auth_token']) });   
                     }
                 });
