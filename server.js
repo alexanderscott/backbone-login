@@ -47,7 +47,8 @@ app.configure('production', function(){
 // Compression (gzip)
 app.use( express.compress() );
 app.use( express.methodOverride() );
-app.use( express.bodyParser() );            // Needed to parse POST data sent as JSON payload
+app.use( express.urlencoded() );            // Needed to parse POST data sent as JSON payload
+app.use( express.json() );
 
 
 // Cookie config
