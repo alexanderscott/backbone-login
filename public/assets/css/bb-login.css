@@ -29,13 +29,36 @@ html, body {
 	padding-right: 30px;
 }
 
+ul li {
+    list-style-type: none;
+}
+
+ul {
+    padding-left: 0;
+}
+
 table, tr, tbody, td {
 	vertical-align: middle;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+.parsley-error-list {
+    color: red;
 }
 
 .hero-unit {
 	padding: 30px 20px 30px 20px;
 	margin: 30px 20px 20px 20px;
+}
+
+.navbar-header {
+    float: none;
+}
+
+.mb20 {
+    margin-bottom: 20px;
 }
 
 /*
@@ -46,9 +69,15 @@ table, tr, tbody, td {
 /*.control-group {text-align:left;}*/
 
 #login-form{
-	padding-left: 120px;
-	padding-right: 120px;
+	padding-left: 80px;
+	padding-right: 80px;
 }
+
+#login-form-container input {
+    padding: 5px;
+    margin:5px;
+}
+
 
 /*input[type="text"],*/
 /*input[type="password"],*/

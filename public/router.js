@@ -69,8 +69,6 @@ define([
             if(!hasPushState) this.navigate(window.location.pathname.substring(1), {trigger: true, replace: true});
             else {
                 this.show( new LoginPageView({}) );
-                //if(app.session.get('logged_in')) this.show( new LoginPageView({}) );
-                //else this.show( new LoggedInPageView({}) );
             }                
 
         }

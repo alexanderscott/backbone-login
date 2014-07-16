@@ -84,7 +84,6 @@ require(['app'], function(app){
 
         eraseCookie : function(name, domain){
             // set to epoch in the past for deletion
-            //console.log("Removing cookie:: "+ name+"=;path=/"+( (domain) ?";domain="+domain : "" )+";expires=Thu, 01 Jan 1970 00:00:01 GMT");
             document.cookie = name+"=;path=/"+( (domain) ?";domain="+domain : "" )+";expires=Thu, 01 Jan 1970 00:00:01 GMT";
         },
 

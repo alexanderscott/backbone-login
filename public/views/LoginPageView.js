@@ -59,12 +59,12 @@ define([
                     password: this.$("#login-password-input").val()
                 }, {
                     success: function(mod, res){
-                        if(DEBUG) console.log(mod, res);
+                        if(DEBUG) console.log("SUCCESS", mod, res);
 
                     },
-                    error: function(mod, res){
-                        if(DEBUG) console.log("ERROR", mod, res);
-
+                    error: function(err){
+                        if(DEBUG) console.log("ERROR", err);
+                        app.showAlert('Bummer dude!', err.error, 'alert-danger'); 
                     }
                 });
             } else {
@@ -84,12 +84,12 @@ define([
                     name: this.$("#signup-name-input").val()
                 }, {
                     success: function(mod, res){
-                        if(DEBUG) console.log(mod, res);
+                        if(DEBUG) console.log("SUCCESS", mod, res);
 
                     },
-                    error: function(mod, res){
-                        if(DEBUG) console.log("ERROR", mod, res);
-
+                    error: function(err){
+                        if(DEBUG) console.log("ERROR", err);
+                        app.showAlert('Uh oh!', err.error, 'alert-danger'); 
                     }
                 });
             } else {
