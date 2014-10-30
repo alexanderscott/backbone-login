@@ -16,7 +16,7 @@ function(app, WebRouter, SessionModel) {
 
     // Create a new session model and scope it to the app global
     // This will be a singleton, which other modules can access
-    app.session = new SessionModel({ });
+    app.session = new SessionModel({});
 
     // Check the auth status upon initialization,
     // before rendering anything or matching routes
@@ -27,7 +27,7 @@ function(app, WebRouter, SessionModel) {
 
             // HTML5 pushState for URLs without hashbangs
             var hasPushstate = !!(window.history && history.pushState);
-            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/' } );
+            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/' });
             else Backbone.history.start();
 
         }
@@ -40,7 +40,7 @@ function(app, WebRouter, SessionModel) {
     $('#content-app').on("click", "a:not([data-bypass])", function(evt) {
         evt.preventDefault();
         var href = $(this).attr("href");
-        app.router.navigate(href, { trigger : true, replace : false } );
+        app.router.navigate(href, { trigger : true, replace : false });
 
     });
 });

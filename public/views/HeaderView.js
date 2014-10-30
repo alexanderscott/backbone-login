@@ -1,7 +1,6 @@
 define([
     "app",
     "text!templates/header.html",
-    "utils",
     "bootstrap"
 ], function(app, HeaderTpl){
 
@@ -17,7 +16,7 @@ define([
         },
         
         events: {
-            "click #logout-link" : "onLogoutClick",
+            "click #logout-link"         : "onLogoutClick",
             "click #remove-account-link" : "onRemoveAccountClick"
         },
       

@@ -4,8 +4,7 @@ define([
     "text!templates/logged-in-page.html",
     "text!templates/login-page.html",
 
-    "parsley",
-    "utils"
+    "parsley"
 ], function(app, LoggedInPageTpl, LoginPageTpl){
 
     var LoginView = Backbone.View.extend({
@@ -103,12 +102,9 @@ define([
             if(app.session.get('logged_in')) this.template = _.template(LoggedInPageTpl);
             else this.template = _.template(LoginPageTpl); 
 
-            this.$el.html(this.template({ 
-                user: app.session.user.toJSON() 
-            }));
+            this.$el.html(this.template({ user: app.session.user.toJSON() }));
             return this;
         }
-
 
     });
 

@@ -2,15 +2,13 @@
  * @desc		stores the POST state and response state of authentication for user
  */
 define([
-    "app",
-    "utils"
+    "app"
 ], function(app){
 
     var UserModel = Backbone.Model.extend({
 
         initialize: function(){
             _.bindAll(this);
-        
         },
 
         defaults: {

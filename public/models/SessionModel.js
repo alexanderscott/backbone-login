@@ -3,8 +3,7 @@
  */
 define([
     "app",
-    "models/UserModel",
-    "utils"
+    "models/UserModel"
 ], function(app, UserModel){
 
     var SessionModel = Backbone.Model.extend({
@@ -21,7 +20,7 @@ define([
 
             // Singleton user object
             // Access or listen on this throughout any module with app.session.user
-            this.user = new UserModel({ });
+            this.user = new UserModel({});
         },
 
 
@@ -31,9 +30,8 @@ define([
 
         // Fxn to update user attributes after recieving API response
         updateSessionUser: function( userData ){
-            this.user.set( _.pick( userData, _.keys(this.user.defaults) ) );
+            this.user.set(_.pick(userData, _.keys(this.user.defaults)));
         },
-
 
 
         /*
@@ -43,10 +41,10 @@ define([
          */
         checkAuth: function(callback, args) {
             var self = this;
-            this.fetch({                                                                          // Check if there are tokens in localstorage
+            this.fetch({ 
                 success: function(mod, res){
                     if(!res.error && res.user){
-                        self.updateSessionUser( res.user );
+                        self.updateSessionUser(res.user);
                         self.set({ logged_in : true });
                         if('success' in callback) callback.success(mod, res);    
                     } else {
@@ -91,20 +89,19 @@ define([
                             self.updateSessionUser( res.user || {} );
                             self.set({ user_id: res.user.id, logged_in: true });
                         } else {
-
                             self.set({ logged_in: false });
                         }
 
-                        if( callback && 'success' in callback ) callback.success(res);
+                        if(callback && 'success' in callback) callback.success(res);
                     } else {
-                        if( callback && 'error' in callback ) callback.error(res);
+                        if(callback && 'error' in callback) callback.error(res);
                     }
                 },
                 error: function(mod, res){
-                    if(callback && 'error' in callback ) callback.error(res);
+                    if(callback && 'error' in callback) callback.error(res);
                 }
             }).complete( function(){
-                if(callback && 'complete' in callback ) callback.complete(res);
+                if(callback && 'complete' in callback) callback.complete(res);
             });
         },
 

@@ -9,9 +9,7 @@ define([
     "models/UserModel",
 
     "views/HeaderView",
-    "views/LoginPageView",
-
-    "utils"
+    "views/LoginPageView"
 ], function(app, SessionModel, UserModel, HeaderView, LoginPageView){
 
     var WebRouter = Backbone.Router.extend({
@@ -21,8 +19,7 @@ define([
         },
 
         routes: {
-            ""                : "index",
-            //"login"         : "login"
+            "" : "index"
         },
 
         show: function(view, options){
@@ -32,7 +29,7 @@ define([
             // so we can create it if it doesn't yet exist
             if(!this.headerView){
                 this.headerView = new HeaderView({});
-                this.headerView.setElement( $(".header") ).render();
+                this.headerView.setElement($(".header")).render();
             }
 
             // Close and unbind any existing page view
@@ -63,14 +60,10 @@ define([
         },
 
         index: function() {
-
             // Fix for non-pushState routing (IE9 and below)
             var hasPushState = !!(window.history && history.pushState);
             if(!hasPushState) this.navigate(window.location.pathname.substring(1), {trigger: true, replace: true});
-            else {
-                this.show( new LoginPageView({}) );
-            }                
-
+            else this.show(new LoginPageView({}));
         }
 
     });
