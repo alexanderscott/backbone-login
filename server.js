@@ -15,9 +15,16 @@ var express = require('express'),
     sqlite = require("sqlite3"),
     _ = require("underscore"),
 
+    compression = require('compression');
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    methodOverride = require('method-override'),
+    errorHandler = require('errorhandler'),
+    csrf = require('csurf'),
+
     app = express(),
     server = http.createServer(app).listen( process.env.PORT || config.port);
-
 
 
 // Initialize sqlite and create our db if it doesnt exist
@@ -32,41 +39,26 @@ db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, use
 // Allow node to be run with proxy passing
 app.enable('trust proxy');
 
-// Logging config
-app.configure('local', function(){
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-app.configure('development', function(){
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-app.configure('production', function(){
-    app.use(express.errorHandler());
-});
-
-
-// Compression (gzip)
-app.use( express.compress() );
-app.use( express.methodOverride() );
-app.use( express.urlencoded() );            // Needed to parse POST data sent as JSON payload
-app.use( express.json() );
-
-
-// Cookie config
-app.use( express.cookieParser( config.cookieSecret ) );           // populates req.signedCookies
-app.use( express.cookieSession( config.sessionSecret ) );         // populates req.session, needed for CSRF
-
 // We need serverside view templating to initially set the CSRF token in the <head> metadata
 // Otherwise, the html could just be served statically from the public directory
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views' );
 app.engine('html', require('hbs').__express);
 
+// Compression (gzip)
+app.use( compression({ threshold: 512 }) );
+app.use( methodOverride() );
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded({ extended: false }) );            // Needed to parse POST data sent as JSON payload
+
+
+// Cookie config
+app.use( cookieParser( config.cookieSecret ) );           // populates req.signedCookies
+app.use( session( { secret: config.sessionSecret, resave: true, saveUninitialized: true } ) );         // populates req.session, needed for CSRF
+
 
 app.use(express.static(__dirname+'/public'));
-app.use(express.csrf());
-
-
-app.use( app.router );
+app.use(csrf());
 
 
 app.get("/", function(req, res){
@@ -160,6 +152,21 @@ app.post("/api/auth/remove_account", function(req, res){
         }
     });
 });
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+});
+
+if (app.get('env') === 'development') {
+  app.use(errorHandler( { dumpExceptions: true, showStack: true } ));
+}
+
+// do not use this for production
+app.use(errorHandler());
 
 
 // Close the db connection on process exit 
