@@ -33,7 +33,7 @@ define([
             }
 
             // Close and unbind any existing page view
-            if(this.currentView) this.currentView.close();
+            if(this.currentView && _.isFunction(this.currentView.close)) this.currentView.close();
 
             // Establish the requested view into scope
             this.currentView = view;
