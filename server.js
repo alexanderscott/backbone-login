@@ -16,7 +16,8 @@ var express = require('express'),
     _ = require("underscore"),
 
     app = express(),
-    server = http.createServer(app).listen( process.env.PORT || config.port);
+    port = process.env.PORT || config.port,
+    server = http.createServer(app).listen(port);
 
 
 
@@ -168,4 +169,4 @@ process.on("exit", function(){
     db.close();
 });
 
-console.log("STARTUP:: Express server listening on port::", server.address().port, ", environment:: ", app.settings.env);
+console.log("STARTUP:: Express server listening on port::", port, ", environment:: ", app.settings.env);
