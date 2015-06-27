@@ -50,7 +50,7 @@ License
 ------------
 The MIT License (MIT)
 
-Copyright (c) 2013-2014 Alex Ehrnschwender
+Copyright (c) 2013-2015 Alex Ehrnschwender
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -68,5 +68,3 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e0049dba8ba4d8ba83ea100757ce0630 "githalytics.com")](http://githalytics.com/alexanderscott/backbone-login)
