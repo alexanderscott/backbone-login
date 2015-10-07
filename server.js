@@ -6,17 +6,19 @@
  * Also signs and unsigns cookies which it uses to persist the client's authentication. 
  * 
 */
+require('newrelic');
 
 var express = require('express'),
     http = require('http'),
 
     config = require("./config"),
+
     bcrypt = require("bcrypt"),
     sqlite = require("sqlite3"),
     _ = require("underscore"),
 
     app = express(),
-    server = http.createServer(app).listen( process.env.PORT || config.port);
+    server = http.createServer(app).listen( process.env.PORT || 9899);
 
 
 
@@ -168,4 +170,4 @@ process.on("exit", function(){
     db.close();
 });
 
-console.log("STARTUP:: Express server listening on port::", server.address().port, ", environment:: ", app.settings.env);
+console.log("STARTUP:: Express server listening on port::", 9899, ", environment:: ", app.settings.env);
