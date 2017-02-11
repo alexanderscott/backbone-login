@@ -18,7 +18,7 @@ var express = require('express'),
     _ = require("underscore"),
 
     app = express(),
-    server = http.createServer(app).listen( process.env.PORT || 9899);
+    server = http.createServer(app).listen(9899);
 
 
 
