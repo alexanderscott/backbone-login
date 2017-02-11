@@ -1,6 +1,6 @@
 backbone-login
 ==============
-Best practices & [demo app](http://backbone-login.crunchdevelopment.com) for client-side authentication via Backbone.js AJAX.
+Best practices & [demo app](https://backbone-login.herokuapp.com) for client-side authentication via Backbone.js AJAX.
 
 Blog article with further details and explanation can be found [here](http://alexehrnschwender.com/2013/07/client-side-auth-session-mgmt-backbone-node/).
 
