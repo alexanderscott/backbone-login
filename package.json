@@ -14,7 +14,7 @@
   "dependencies": {
     "bcrypt": "*",
     "express": "~3.x.x",
-    "hbs": "~2.4.0",
+    "hbs": "~4.2.0",
     "sqlite3": "*",
     "underscore": "~1.5.2"
   },
