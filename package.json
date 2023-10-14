@@ -16,7 +16,7 @@
     "express": "~3.x.x",
     "hbs": "~2.4.0",
     "sqlite3": "*",
-    "underscore": "~1.5.2"
+    "underscore": "~1.12.1"
   },
   "engines": {
     "node": ">= 0.10.0"
